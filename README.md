@@ -1,7 +1,7 @@
 # LQRAdapterLibrary
 万能适配器（RecyclerView、ListView、GridView）
 
-##***LQRAdapterForAbsListView***
+##***一、LQRAdapterForAbsListView***
 
 ###1、创建适配器
 LQRAdapterForAbsListView&lt;数据类型&gt;（上下文，数据集合，item的布局引用）
@@ -33,7 +33,7 @@ LQRAdapterForAbsListView&lt;数据类型&gt;（上下文，数据集合，item�
 ###4、helper的使用
 LQRViewHolderForAbsListView中提供了许多常规用的控件操作，如设置文字、文字颜色、背景、显隐等，同时每个方法都是返回this，这意味着可以链式操作，方便快速开发。
 
-##***LQRAdapterForRecyclerView***
+##***二、LQRAdapterForRecyclerView***
 ###1、创建适配器
 LQRAdapterForRecyclerView&lt;数据类型&gt;（上下文，数据集合，item的布局引用）
 ###2、在convert方法中对item进行数据设置

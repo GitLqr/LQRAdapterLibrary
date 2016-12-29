@@ -68,6 +68,6 @@ LQRViewHolderForRecyclerView中提供了许多常规用的控件操作，如设�
         tv.setText("footer");
         mAdapter.addFooterView(tv);
     }
-![image](screenshots/LqrRecyclerViewDemo/3.gif)
+![image](screenshots/1.gif)
 ###6、其他
 建议与LQRRecyclerView一起使用，不需要考虑LayoutManager和分割线的情况，开发效率大大提高。

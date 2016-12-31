@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 /**
- * @创建者 CSDN_LQR
- * @描述 RecyclerView通用的适配器
+ * RecyclerView通用的适配器
  */
 public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<LQRViewHolderForRecyclerView> {
 
@@ -47,9 +46,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 获取指定索引位置的数据模型
-     *
-     * @param position
-     * @return
      */
     public T getItem(int position) {
         return mData.get(position);
@@ -57,8 +53,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 获取数据集合
-     *
-     * @return
      */
     public List<T> getData() {
         return mData;
@@ -66,9 +60,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 数据局部刷新
-     *
-     * @param positionStart
-     * @param itemCount
      */
     public final void notifyItemRangeInsertedWrapper(int positionStart, int itemCount) {
         if (mHeaderAndFooterAdapter == null) {
@@ -80,8 +71,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 在集合头部添加新的数据集合（下拉从服务器获取最新的数据集合）
-     *
-     * @param data
      */
     public void addNewData(List<T> data) {
         if (data != null) {
@@ -92,8 +81,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 在集合尾部添加更多数据集合（上拉从服务器获取更多的数据集合）
-     *
-     * @param data
      */
     public void addMoreData(List<T> data) {
         if (data != null) {
@@ -115,8 +102,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 设置全新的数据集合，如果传入null，则清空数据列表（第一次从服务器加载数据，或者下拉刷新当前界面数据列表）
-     *
-     * @param data
      */
     public void setData(List<T> data) {
         if (data != null) {
@@ -142,8 +127,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 数据移除刷新
-     *
-     * @param position
      */
     public final void notifyItemRemoveWrapper(int position) {
         if (mHeaderAndFooterAdapter == null) {
@@ -155,8 +138,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 删除指定索引数据条目
-     *
-     * @param position
      */
     public void removeItem(int position) {
         mData.remove(position);
@@ -165,8 +146,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 删除指定数据条目
-     *
-     * @param model
      */
     public void removeItem(T model) {
         removeItem(mData.indexOf(model));
@@ -174,8 +153,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 数据添加刷新
-     *
-     * @param position
      */
     public final void notifyItemInsertedWrapper(int position) {
         if (mHeaderAndFooterAdapter == null) {
@@ -187,9 +164,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 在指定位置添加数据条目
-     *
-     * @param position
-     * @param model
      */
     public void addItem(int position, T model) {
         mData.add(position, model);
@@ -198,8 +172,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 在集合头部添加数据条目
-     *
-     * @param model
      */
     public void addFirstItem(T model) {
         addItem(0, model);
@@ -207,8 +179,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 在集合末尾添加数据条目
-     *
-     * @param model
      */
     public void addLastItem(T model) {
         addItem(mData.size(), model);
@@ -216,8 +186,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 数据变化刷新
-     *
-     * @param position
      */
     public final void notifyItemChangedWrapper(int position) {
         if (mHeaderAndFooterAdapter == null) {
@@ -229,9 +197,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 替换指定索引的数据条目
-     *
-     * @param position
-     * @param newModel
      */
     public void setItem(int position, T newModel) {
         mData.set(position, newModel);
@@ -240,9 +205,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 替换指定数据条目
-     *
-     * @param oldModel
-     * @param newModel
      */
     public void setItem(T oldModel, T newModel) {
         setItem(mData.indexOf(oldModel), newModel);
@@ -250,9 +212,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 数据移动刷新
-     *
-     * @param fromPosition
-     * @param toPosition
      */
     public final void notifyItemMoveWrapper(int fromPosition, int toPosition) {
         if (mHeaderAndFooterAdapter == null) {
@@ -264,9 +223,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 移动数据条目的位置
-     *
-     * @param fromPosition
-     * @param toPosition
      */
     public void moveItem(int fromPosition, int toPosition) {
         notifyItemChangedWrapper(fromPosition);
@@ -280,8 +236,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 获取第一个数据模型
-     *
-     * @return
      */
     public T getFirstItem() {
         return getItemCount() > 0 ? getItem(0) : null;
@@ -289,8 +243,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 得到最后一个数据模型
-     *
-     * @return
      */
     public T getLastItem() {
         return getItemCount() > 0 ? getItem(getItemCount() - 1) : null;
@@ -318,9 +270,6 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     /**
      * 判断是否是头部或尾部
-     *
-     * @param viewHolder
-     * @return
      */
     public boolean isHeaderOrFooter(RecyclerView.ViewHolder viewHolder) {
         return viewHolder.getAdapterPosition() < getHeadersCount() || viewHolder.getAdapterPosition() >= getHeadersCount() + getItemCount();

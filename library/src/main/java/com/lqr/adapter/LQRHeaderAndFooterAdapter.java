@@ -8,8 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * @创建者 CSDN_LQR
- * @描述 头部尾部适配器(RecyclerView专用)
+ * 头部尾部适配器(RecyclerView专用)
  * <p>
  * 该适配器只是对LQRAdapterForRecyclerView进行了一个包装，在保证不修改LQRAdapterForRecyclerView的getItemType方法的情况下，
  * 给LQRAdapterForRecyclerView增加头部和尾部，所以如果有添加头部或尾部的话，在setAdapter时，一定是使用当前类的实例，而非LQRAdapterForRecyclerView的实例！！

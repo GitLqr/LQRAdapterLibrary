@@ -9,8 +9,7 @@ import android.widget.BaseAdapter;
 import java.util.List;
 
 /**
- * @创建者 CSDN_LQR
- * @描述 ListView和GridView通用的适配器
+ * ListView和GridView通用的适配器
  */
 public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
@@ -58,10 +57,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 对item进行数据设置（交给开发人员）
-     *
-     * @param helper
-     * @param item
-     * @param position
      */
     public abstract void convert(LQRViewHolderForAbsListView helper, T item, int position);
 
@@ -69,8 +64,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 获取数据集合
-     *
-     * @return
      */
     public List<T> getData() {
         return mData;
@@ -78,8 +71,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 在集合头部添加新的数据集合（下拉从服务器获取最新的数据集合）
-     *
-     * @param data
      */
     public void addNewData(List<T> data) {
         if (data != null) {
@@ -90,8 +81,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 在集合尾部添加更多数据集合（上拉从服务器获取更多的数据集合）
-     *
-     * @param data
      */
     public void addMoreData(List<T> data) {
         if (data != null) {
@@ -102,8 +91,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 设置全新的数据集合，如果传入null，则清空数据列表（第一次从服务器加载数据，或者下拉刷新当前界面数据列表）
-     *
-     * @param data
      */
     public void setData(List<T> data) {
         if (data != null) {
@@ -129,8 +116,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 删除指定索引数据条目
-     *
-     * @param position
      */
     public void removeItem(int position) {
         mData.remove(position);
@@ -139,8 +124,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 删除指定数据条目
-     *
-     * @param model
      */
     public void removeItem(T model) {
         mData.remove(model);
@@ -149,9 +132,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 在指定位置添加数据条目
-     *
-     * @param position
-     * @param model
      */
     public void addItem(int position, T model) {
         mData.add(position, model);
@@ -160,8 +140,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 在集合头部添加数据条目
-     *
-     * @param model
      */
     public void addFirstItem(T model) {
         addItem(0, model);
@@ -169,8 +147,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 在集合末尾添加数据条目
-     *
-     * @param model
      */
     public void addLastItem(T model) {
         addItem(mData.size(), model);
@@ -178,9 +154,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 替换指定索引的数据条目
-     *
-     * @param location
-     * @param newModel
      */
     public void setItem(int location, T newModel) {
         mData.set(location, newModel);
@@ -189,9 +162,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 替换指定数据条目
-     *
-     * @param oldModel
-     * @param newModel
      */
     public void setItem(T oldModel, T newModel) {
         setItem(mData.indexOf(oldModel), newModel);
@@ -199,9 +169,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 移动数据条目的位置
-     *
-     * @param fromPosition
-     * @param toPosition
      */
     public void moveItem(int fromPosition, int toPosition) {
         mData.add(toPosition, mData.remove(fromPosition));
@@ -229,11 +196,6 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
 
     /**
      * 得到item对应的ViewHoldler
-     *
-     * @param position
-     * @param convertView
-     * @param viewGroup
-     * @return
      */
     private LQRViewHolderForAbsListView getViewHolder(int position, View convertView, ViewGroup viewGroup) {
         return LQRViewHolderForAbsListView.get(mContext, mDefaultLayouId, position, convertView, viewGroup);

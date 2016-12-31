@@ -1,6 +1,10 @@
 # LQRAdapterLibrary
 万能适配器（RecyclerView、ListView、GridView）
 
+###只需要导入一句即可使用两种适配器：
+
+	compile 'com.lqr.adapter:library:1.0.0'
+
 ##***一、LQRAdapterForAbsListView***
 
 ###1、创建适配器

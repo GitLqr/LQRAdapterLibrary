@@ -10,8 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * @创建者 CSDN_LQR
- * @描述 RecyclerView通用的ViewHodler
+ * RecyclerView通用的ViewHodler
  */
 public class LQRViewHolderForRecyclerView extends RecyclerView.ViewHolder {
 
@@ -42,10 +41,6 @@ public class LQRViewHolderForRecyclerView extends RecyclerView.ViewHolder {
 
     /**
      * 设置TextView文字，并返回this
-     *
-     * @param viewId
-     * @param text
-     * @return
      */
     public LQRViewHolderForRecyclerView setText(int viewId, String text) {
         TextView tv = getView(viewId);
@@ -55,10 +50,6 @@ public class LQRViewHolderForRecyclerView extends RecyclerView.ViewHolder {
 
     /**
      * 设置TextView的文字颜色，并返回this
-     *
-     * @param viewId
-     * @param colorId
-     * @return
      */
     public LQRViewHolderForRecyclerView setTextColor(int viewId, int colorId) {
         TextView tv = getView(viewId);
@@ -68,10 +59,6 @@ public class LQRViewHolderForRecyclerView extends RecyclerView.ViewHolder {
 
     /**
      * 设置ImageView的图片，并返回this
-     *
-     * @param viewId
-     * @param resId
-     * @return
      */
     public LQRViewHolderForRecyclerView setImageResource(int viewId, int resId) {
         ImageView iv = getView(viewId);
@@ -81,10 +68,6 @@ public class LQRViewHolderForRecyclerView extends RecyclerView.ViewHolder {
 
     /**
      * 设置ImageView的图片，并返回this
-     *
-     * @param viewId
-     * @param bitmap
-     * @return
      */
     public LQRViewHolderForRecyclerView setImageBitmap(int viewId, Bitmap bitmap) {
         ImageView iv = getView(viewId);
@@ -94,10 +77,6 @@ public class LQRViewHolderForRecyclerView extends RecyclerView.ViewHolder {
 
     /**
      * 设置ImageView的图片，并返回this
-     *
-     * @param viewId
-     * @param path
-     * @return
      */
     public LQRViewHolderForRecyclerView setImageFileResource(int viewId, String path) {
         ImageView iv = getView(viewId);
@@ -108,10 +87,6 @@ public class LQRViewHolderForRecyclerView extends RecyclerView.ViewHolder {
 
     /**
      * 设置背景颜色，并返回this
-     *
-     * @param viewId
-     * @param colorId
-     * @return
      */
     public LQRViewHolderForRecyclerView setBackgroundColor(int viewId, int colorId) {
         View view = getView(viewId);
@@ -122,10 +97,6 @@ public class LQRViewHolderForRecyclerView extends RecyclerView.ViewHolder {
 
     /**
      * 设置背景资源，并返回this
-     *
-     * @param viewId
-     * @param resId
-     * @return
      */
     public LQRViewHolderForRecyclerView setBackgrounResource(int viewId, int resId) {
         View view = getView(viewId);
@@ -135,10 +106,6 @@ public class LQRViewHolderForRecyclerView extends RecyclerView.ViewHolder {
 
     /**
      * 设置显隐，并返回this
-     *
-     * @param viewId
-     * @param visibility
-     * @return
      */
     public LQRViewHolderForRecyclerView setViewVisibility(int viewId, int visibility) {
         View view = getView(viewId);
@@ -148,10 +115,6 @@ public class LQRViewHolderForRecyclerView extends RecyclerView.ViewHolder {
 
     /**
      * 设置是否可用，并返回this
-     *
-     * @param viewId
-     * @param enabled
-     * @return
      */
     public LQRViewHolderForRecyclerView setEnabled(int viewId, boolean enabled) {
         View view = getView(viewId);
@@ -161,10 +124,6 @@ public class LQRViewHolderForRecyclerView extends RecyclerView.ViewHolder {
 
     /**
      * 设置是否可获取焦点，并返回this
-     *
-     * @param viewId
-     * @param focusable
-     * @return
      */
     public LQRViewHolderForRecyclerView setFocusable(int viewId, boolean focusable) {
         View view = getView(viewId);

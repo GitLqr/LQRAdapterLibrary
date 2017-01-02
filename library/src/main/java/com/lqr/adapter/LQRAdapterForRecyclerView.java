@@ -8,30 +8,56 @@ import android.view.ViewGroup;
 import java.util.List;
 
 /**
- * RecyclerView通用的适配器
+ * RecyclerView通用的适配器（支持多itemType）
  */
 public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<LQRViewHolderForRecyclerView> {
 
     private Context mContext;
-    private int mDefaultLayoutId;
+    private int mDefaultLayoutId = 0;
     private List<T> mData;
     private LQRHeaderAndFooterAdapter mHeaderAndFooterAdapter;
 
-    public LQRAdapterForRecyclerView(Context context, int defaultLayoutId, List<T> data) {
+    /**
+     * 当使用多种itemType时，最好使用这种构造方法
+     */
+    public LQRAdapterForRecyclerView(Context context, List<T> data) {
         mContext = context;
-        mDefaultLayoutId = defaultLayoutId;
         mData = data;
+    }
+
+    /**
+     * 当使用一种itemType时，最好使用这种构造方法
+     */
+    public LQRAdapterForRecyclerView(Context context, int defaultLayoutId, List<T> data) {
+        this(context,data);
+        mDefaultLayoutId = defaultLayoutId;
+    }
+
+    /**
+     * 当需要使用多itemType时，请重写该方法，返回值就是对应类型的布局id
+     */
+    @Override
+    public int getItemViewType(int position) {
+        if (mDefaultLayoutId == 0) {
+            throw new RuntimeException("请在 " + this.getClass().getSimpleName() + " 中重写 getItemViewType 方法返回布局资源 id，或者使用 " + this.getClass().getSimpleName() + " 三个参数的构造方法 LQRAdapterForRecyclerView(Context context, int defaultLayoutId, List<T> data)");
+        }
+        return mDefaultLayoutId;
     }
 
     @Override
     public LQRViewHolderForRecyclerView onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new LQRViewHolderForRecyclerView(mContext, View.inflate(mContext, mDefaultLayoutId, null));
+        return new LQRViewHolderForRecyclerView(mContext, View.inflate(mContext, viewType, null));
     }
 
     @Override
     public void onBindViewHolder(LQRViewHolderForRecyclerView holder, int position) {
         convert(holder, mData.get(position), position);
     }
+
+//    @Override
+//    public void onBindViewHolder(LQRViewHolderForRecyclerView holder, int position, List<Object> payloads) {
+//        convert(holder, mData.get(position), position);
+//    }
 
     @Override
     public int getItemCount() {

@@ -73,5 +73,68 @@ LQRViewHolderForRecyclerView中提供了许多常规用的控件操作，如设�
         mAdapter.addFooterView(tv);
     }
 ![image](screenshots/1.gif)
-###6、其他
+###6、多视图类型支持（viewType）
+若项目中需要用到多种条目视图类型，则需要重新getItemViewType方法，其返回值是不同类型对应的视图布局资源id，如：
+
+	private static final int NOTIFICATION = R.layout.item_notification;
+    private static final int SEND_TEXT = R.layout.item_text_send;
+    private static final int RECEIVE_TEXT = R.layout.item_text_receive;
+    private static final int SEND_STICKER = R.layout.item_sticker_send;
+    private static final int RECEIVE_STICKER = R.layout.item_sticker_receive;
+    private static final int SEND_IMAGE = R.layout.item_image_send;
+    private static final int RECEIVE_IMAGE = R.layout.item_image_receive;
+    private static final int SEND_VIDEO = R.layout.item_video_send;
+    private static final int RECEIVE_VIDEO = R.layout.item_video_receive;
+    private static final int SEND_LOCATION = R.layout.item_location_send;
+    private static final int RECEIVE_LOCATION = R.layout.item_location_receive;
+
+    @Override
+    public int getItemViewType(int position) {
+        IMMessage msg = getData().get(position);
+        MsgTypeEnum msgType = msg.getMsgType();
+        if (msgType == MsgTypeEnum.notification) {
+            return NOTIFICATION;
+        }
+        if (msgType == MsgTypeEnum.text) {
+            if (msg.getDirect() == MsgDirectionEnum.Out) {
+                return SEND_TEXT;
+            } else {
+                return RECEIVE_TEXT;
+            }
+        }
+        if (msgType == MsgTypeEnum.custom) {
+            if (msg.getDirect() == MsgDirectionEnum.Out) {
+                return SEND_STICKER;
+            } else {
+                return RECEIVE_STICKER;
+            }
+        }
+        if (msgType == MsgTypeEnum.image) {
+            if (msg.getDirect() == MsgDirectionEnum.Out) {
+                return SEND_IMAGE;
+            } else {
+                return RECEIVE_IMAGE;
+            }
+        }
+        if (msgType == MsgTypeEnum.video) {
+            if (msg.getDirect() == MsgDirectionEnum.Out) {
+                return SEND_VIDEO;
+            } else {
+                return RECEIVE_VIDEO;
+            }
+        }
+        if (msgType == MsgTypeEnum.location) {
+            if (msg.getDirect() == MsgDirectionEnum.Out) {
+                return SEND_LOCATION;
+            } else {
+                return RECEIVE_LOCATION;
+            }
+        }
+        return super.getItemViewType(position);
+    }
+
+以上是本人项目中用到的代码，以此作为参考。
+
+###7、其他
+
 建议与LQRRecyclerView一起使用，不需要考虑LayoutManager和分割线的情况，开发效率大大提高。

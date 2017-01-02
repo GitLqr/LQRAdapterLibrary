@@ -3,7 +3,7 @@
 
 ###只需要导入一句即可使用两种适配器：
 
-	compile 'com.lqr.adapter:library:1.0.0'
+	compile 'com.lqr.adapter:library:1.0.1'
 
 ##***一、LQRAdapterForAbsListView***
 

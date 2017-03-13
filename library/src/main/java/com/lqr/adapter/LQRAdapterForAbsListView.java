@@ -20,6 +20,34 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
     //item的布局id
     private int mDefaultLayouId;
 
+    private OnItemClickListener mOnItemClickListener;
+    private OnItemLongClickListener mOnItemLongClickListener;
+    private OnItemTouchListener mOnItemTouchListener;
+
+    public OnItemClickListener getOnItemClickListener() {
+        return mOnItemClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
+
+    public OnItemLongClickListener getOnItemLongClickListener() {
+        return mOnItemLongClickListener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        mOnItemLongClickListener = onItemLongClickListener;
+    }
+
+    public OnItemTouchListener getOnItemTouchListener() {
+        return mOnItemTouchListener;
+    }
+
+    public void setOnItemTouchListener(OnItemTouchListener onItemTouchListener) {
+        mOnItemTouchListener = onItemTouchListener;
+    }
+
     public LQRAdapterForAbsListView(Context context, List<T> data, int defaultLayouId) {
         mContext = context;
         mData = data;
@@ -94,12 +122,7 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
      */
     public void setData(List<T> data) {
         if (data != null) {
-            if (mData == null) {
-                mData = data;
-            } else {
-                mData.clear();
-                mData.addAll(data);
-            }
+            mData = data;
         } else {
             mData.clear();
         }
@@ -198,7 +221,12 @@ public abstract class LQRAdapterForAbsListView<T> extends BaseAdapter {
      * 得到item对应的ViewHoldler
      */
     private LQRViewHolderForAbsListView getViewHolder(int position, View convertView, ViewGroup viewGroup) {
-        return LQRViewHolderForAbsListView.get(mContext, mDefaultLayouId, position, convertView, viewGroup);
+        LQRViewHolderForAbsListView holder = LQRViewHolderForAbsListView.get(mContext, mDefaultLayouId, position, convertView, viewGroup);
+        holder.setOnItemClickListener(mOnItemClickListener);
+        holder.setOnItemLongClickListener(mOnItemLongClickListener);
+        holder.setOnItemTouchListener(mOnItemTouchListener);
+        return holder;
     }
+
 
 }

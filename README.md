@@ -3,7 +3,7 @@
 
 ###只需要导入一句即可使用两种适配器：
 
-	compile 'com.lqr.adapter:library:1.0.1'
+	compile 'com.lqr.adapter:library:1.0.2'
 
 ##***一、LQRAdapterForAbsListView***
 
@@ -37,13 +37,16 @@ LQRAdapterForAbsListView&lt;数据类型&gt;（上下文，数据集合，item�
 ###4、helper的使用
 LQRViewHolderForAbsListView中提供了许多常规用的控件操作，如设置文字、文字颜色、背景、显隐等，同时每个方法都是返回this，这意味着可以链式操作，方便快速开发。
 
+###
+
+
 ##***二、LQRAdapterForRecyclerView***
 ###1、创建适配器
 LQRAdapterForRecyclerView&lt;数据类型&gt;（上下文，数据集合，item的布局引用）
 ###2、在convert方法中对item进行数据设置
 ###3、例子：
 	//RecyclerView
-	mRv.setAdapter(new LQRAdapterForRecyclerView<String>(this, R.layout.item_tv_list, mData) {
+	mRv.setAdapter(new LQRAdapterForRecyclerView<String>(this, mData, R.layout.item_tv_list) {
         @Override
         public void convert(LQRViewHolderForRecyclerView helper, String item, int position) {
             helper.setText(R.id.tv, item);
@@ -138,3 +141,28 @@ LQRViewHolderForRecyclerView中提供了许多常规用的控件操作，如设�
 ###7、其他
 
 建议与LQRRecyclerView一起使用，不需要考虑LayoutManager和分割线的情况，开发效率大大提高。
+
+##三、事件控制
+
+不管是LQRAdapterForAbsListView还是LQRAdapterForRecyclerView，都可以通过使用适配器对item进行事件监听，代码如下：
+
+    mAdapter.setOnItemClickListener(new OnItemClickListener() {
+        @Override
+        public void onItemClick(LQRViewHolder helper, ViewGroup parent, View itemView, int position) {
+            helper.setText(R.id.tv, "我被点击了");
+        }
+    });
+    mAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+        @Override
+        public boolean onItemLongClick(LQRViewHolder helper, ViewGroup parent, View itemView, int position) {
+            helper.setText(R.id.tv, "我被长按了");
+            return false;
+        }
+    });
+    mAdapter.setOnItemTouchListener(new OnItemTouchListener() {
+        @Override
+        public boolean onItemTouch(LQRViewHolder helper, View childView, MotionEvent event, int position) {
+            helper.setText(R.id.tv, "我被触摸了");
+            return false;
+        }
+    });

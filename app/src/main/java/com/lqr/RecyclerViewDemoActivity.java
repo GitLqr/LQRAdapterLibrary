@@ -5,11 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lqr.adapter.LQRAdapterForRecyclerView;
+import com.lqr.adapter.LQRViewHolder;
 import com.lqr.adapter.LQRViewHolderForRecyclerView;
+import com.lqr.adapter.OnItemClickListener;
+import com.lqr.adapter.OnItemLongClickListener;
+import com.lqr.adapter.OnItemTouchListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +40,33 @@ public class RecyclerViewDemoActivity extends AppCompatActivity {
         mRv = (RecyclerView) findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         mRv.setLayoutManager(llm);
-        mAdapter = new LQRAdapterForRecyclerView<String>(this, R.layout.item_tv_list, mData) {
+        mAdapter = new LQRAdapterForRecyclerView<String>(this, mData, R.layout.item_tv_list) {
             @Override
             public void convert(LQRViewHolderForRecyclerView helper, String item, int position) {
                 helper.setText(tv, item);
             }
         };
         mRv.setAdapter(mAdapter.getHeaderAndFooterAdapter());
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(LQRViewHolder helper, ViewGroup parent, View itemView, int position) {
+                helper.setText(R.id.tv, "我被点击了");
+            }
+        });
+        mAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(LQRViewHolder helper, ViewGroup parent, View itemView, int position) {
+                helper.setText(R.id.tv, "我被长按了");
+                return false;
+            }
+        });
+        mAdapter.setOnItemTouchListener(new OnItemTouchListener() {
+            @Override
+            public boolean onItemTouch(LQRViewHolder helper, View childView, MotionEvent event, int position) {
+                helper.setText(R.id.tv, "我被触摸了");
+                return false;
+            }
+        });
         testAddHeaderView();
 
         testAddFooterView();

@@ -17,6 +17,34 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
     private List<T> mData;
     private LQRHeaderAndFooterAdapter mHeaderAndFooterAdapter;
 
+    private OnItemClickListener mOnItemClickListener;
+    private OnItemLongClickListener mOnItemLongClickListener;
+    private OnItemTouchListener mOnItemTouchListener;
+
+    public OnItemClickListener getOnItemClickListener() {
+        return mOnItemClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
+
+    public OnItemLongClickListener getOnItemLongClickListener() {
+        return mOnItemLongClickListener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        mOnItemLongClickListener = onItemLongClickListener;
+    }
+
+    public OnItemTouchListener getOnItemTouchListener() {
+        return mOnItemTouchListener;
+    }
+
+    public void setOnItemTouchListener(OnItemTouchListener onItemTouchListener) {
+        mOnItemTouchListener = onItemTouchListener;
+    }
+
     /**
      * 当使用多种itemType时，最好使用这种构造方法
      */
@@ -28,8 +56,8 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
     /**
      * 当使用一种itemType时，最好使用这种构造方法
      */
-    public LQRAdapterForRecyclerView(Context context, int defaultLayoutId, List<T> data) {
-        this(context,data);
+    public LQRAdapterForRecyclerView(Context context, List<T> data, int defaultLayoutId) {
+        this(context, data);
         mDefaultLayoutId = defaultLayoutId;
     }
 
@@ -46,7 +74,11 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
 
     @Override
     public LQRViewHolderForRecyclerView onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new LQRViewHolderForRecyclerView(mContext, View.inflate(mContext, viewType, null));
+        LQRViewHolderForRecyclerView holder = new LQRViewHolderForRecyclerView(mContext, View.inflate(mContext, viewType, null));
+        holder.setOnItemClickListener(mOnItemClickListener);
+        holder.setOnItemLongClickListener(mOnItemLongClickListener);
+        holder.setOnItemTouchListener(mOnItemTouchListener);
+        return holder;
     }
 
     @Override
@@ -131,12 +163,7 @@ public abstract class LQRAdapterForRecyclerView<T> extends RecyclerView.Adapter<
      */
     public void setData(List<T> data) {
         if (data != null) {
-            if (mData == null) {
-                mData = data;
-            } else {
-                mData.clear();
-                mData.addAll(data);
-            }
+            mData = data;
         } else {
             mData.clear();
         }

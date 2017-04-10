@@ -1,16 +1,16 @@
 # LQRAdapterLibrary
 万能适配器（RecyclerView、ListView、GridView）
 
-###只需要导入一句即可使用两种适配器：
+### 只需要导入一句即可使用两种适配器：
 
 	compile 'com.lqr.adapter:library:1.0.2'
 
-##***一、LQRAdapterForAbsListView***
+## ***一、LQRAdapterForAbsListView***
 
-###1、创建适配器
+### 1、创建适配器
 LQRAdapterForAbsListView&lt;数据类型&gt;（上下文，数据集合，item的布局引用）
-###2、在convert方法中对item进行数据设置
-###3、例子：
+### 2、在convert方法中对item进行数据设置
+### 3、例子：
 	private List<String> mData = new ArrayList<>();
     for (int i = 0; i < 100; i++) {
         mData.add("item " + i);
@@ -34,17 +34,14 @@ LQRAdapterForAbsListView&lt;数据类型&gt;（上下文，数据集合，item�
         }
 
     });
-###4、helper的使用
+### 4、helper的使用
 LQRViewHolderForAbsListView中提供了许多常规用的控件操作，如设置文字、文字颜色、背景、显隐等，同时每个方法都是返回this，这意味着可以链式操作，方便快速开发。
 
-###
-
-
-##***二、LQRAdapterForRecyclerView***
-###1、创建适配器
+## ***二、LQRAdapterForRecyclerView***
+### 1、创建适配器
 LQRAdapterForRecyclerView&lt;数据类型&gt;（上下文，数据集合，item的布局引用）
-###2、在convert方法中对item进行数据设置
-###3、例子：
+### 2、在convert方法中对item进行数据设置
+### 3、例子：
 	//RecyclerView
 	mRv.setAdapter(new LQRAdapterForRecyclerView<String>(this, mData, R.layout.item_tv_list) {
         @Override
@@ -52,9 +49,9 @@ LQRAdapterForRecyclerView&lt;数据类型&gt;（上下文，数据集合，item�
             helper.setText(R.id.tv, item);
         }
     });
-###4、helper的使用
+### 4、helper的使用
 LQRViewHolderForRecyclerView中提供了许多常规用的控件操作，如设置文字、文字颜色、背景、显隐等，同时每个方法都是返回this，这意味着可以链式操作，方便快速开发。
-###5、添加头部、尾部
+### 5、添加头部、尾部
 
 	LQRAdapterForRecyclerView<String>  mAdapter = new LQRAdapterForRecyclerView(...);
 	//必须使用HeaderAndFooterAdapter作为RecyclerView的适配器
@@ -75,8 +72,10 @@ LQRViewHolderForRecyclerView中提供了许多常规用的控件操作，如设�
         tv.setText("footer");
         mAdapter.addFooterView(tv);
     }
+
 ![image](screenshots/1.gif)
-###6、多视图类型支持（viewType）
+
+### 6、多视图类型支持（viewType）
 若项目中需要用到多种条目视图类型，则需要重新getItemViewType方法，其返回值是不同类型对应的视图布局资源id，如：
 
 	private static final int NOTIFICATION = R.layout.item_notification;
@@ -138,11 +137,11 @@ LQRViewHolderForRecyclerView中提供了许多常规用的控件操作，如设�
 
 以上是本人项目中用到的代码，以此作为参考。
 
-###7、其他
+### 7、其他
 
 建议与LQRRecyclerView一起使用，不需要考虑LayoutManager和分割线的情况，开发效率大大提高。
 
-##三、事件控制
+## 三、事件控制
 
 不管是LQRAdapterForAbsListView还是LQRAdapterForRecyclerView，都可以通过使用适配器对item进行事件监听，代码如下：
 
